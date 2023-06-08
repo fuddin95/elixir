@@ -54,15 +54,21 @@ defmodule Cards do
   end
 
   def load(filename) do
-    {status, fileData} = File.read(filename)
-
-    case status do
-      :ok -> :erlang.binary_to_term(fileData)
-      :error -> "That file doesn't exist"
+    case File.read(filename) do
+      {:ok, binary} -> :erlang.binary_to_term(binary)
+      {:error, _reason} -> "That file doesn't exist"
     end
   end
 
   def contains?(deck, card) do
     Enum.member?(deck, card)
+  end
+
+  def create_hand(hand_size) do
+    # deck = Cards.create_deck_2()
+    # deck = Cards.shuffle(deck)
+    # Cards.deal(deck, hand_size)
+
+    Cards.create_deck_2() |> Cards.shuffle() |> Cards.deal(hand_size)
   end
 end
