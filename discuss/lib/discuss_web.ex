@@ -44,7 +44,6 @@ defmodule DiscussWeb do
 
       import Plug.Conn
       import DiscussWeb.Gettext
-
       unquote(verified_routes())
     end
   end
