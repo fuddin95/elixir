@@ -1,4 +1,15 @@
 defmodule HelloWorld.List do
+  @moduledoc """
+
+  Function Summary:
+
+  1. simple_sum
+  """
+
+  @doc """
+  Returns the sum of numnbers in the list
+  """
+  @spec sum(list(number())) :: number()
 
   def simple_sum(nums), do: sum_tail_recursive(nums)
   def sum([]), do: 0
