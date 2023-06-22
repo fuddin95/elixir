@@ -20,4 +20,22 @@ defmodule HelloWorld.List do
   def sum_tail_recursive([head | tail], acc) do
     sum_tail_recursive(tail, acc + head)
   end
+
+  #_____________________ Reverse a list _______________________
+  # Both are same list(any()) and [any()]
+  @spec reverse(list(any()), [any()]) :: list(any())
+  def reverse(elements, acc \\ [])
+  def reverse([], acc), do: acc
+  def reverse([head | tail], acc) do
+    reverse(tail, [head | acc])
+  end
+
+  # _____________________ Map _______________________
+
+  def map(elements, func, acc \\ [])
+  def map([], _, acc), do: acc
+  def map([head | tail], func, acc) do
+    map(tail, func, [func.(head) | acc])
+  end
+
 end
