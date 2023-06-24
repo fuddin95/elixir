@@ -19,7 +19,12 @@ defmodule HelloWorld.Struct.Wonders do
       %Wonders{name: "Colosseum", country: "Italy"}
     ]
   end
-
+@spec print_names([t()]) :: :ok
   def print_names(wonders) do
-    Enum.each(wonders, fn wonder -> IO.puts(name) end)
+    Enum.each(wonders, fn %{name: name, country: country} ->
+      IO.puts(name)
+      IO.puts(" Is in this country: ")
+      IO.puts(country)
+    end)
+  end
 end
