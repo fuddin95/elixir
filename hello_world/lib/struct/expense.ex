@@ -64,4 +64,26 @@ end
   [new_item | sample() |> List.delete(item)]
 
 end
+
+# ___________________ WITH _______________________
+
+# Login -> authenticate, verify, authorize
+
+@users ["user1", "user2", "user3"]
+
+def authenticate(user) when user in @users, do: {:ok, "authorized"}
+def authenticate(_), do: {:error, "unauthorized"}
+
+def verify_password(user, _password) when user in @users, do: {:ok, "password verified"}
+def verify_password(_user, _password), do: {:ok, "wrong password"}
+
+def login(user, password) do
+    with {:ok, _auth_msg} <- authenticate(user),
+  {:ok, _auth_msg} <- verify_password(user,password) do
+    {:ok, "#{user} is logged in"}
+    else
+    {:error, msg} -> {:error, msg}
+    _ -> {:unathorized, "unauthorized"}
+    end
+  end
 end
